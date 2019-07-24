@@ -1,0 +1,13 @@
+[Unit]
+Description=Wake Hosts when asked for them
+After=network.target
+
+[Service]
+ExecStart=/root/wol/wolonarp.py
+ExecReload=/bin/kill -HUP $MAINPID
+#KillMode=process
+KillMode=control-group
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
